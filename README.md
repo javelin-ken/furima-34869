@@ -3,7 +3,7 @@
 # usersテーブル
 
 | Column             | type          | option
-| ------------------ | ------------- | -----------               |
+| ------------------ | ------------- | ------------------------- |
 | nickname           | string        | null: false               |
 | email              | string        | null: false, unique :true |
 | encrypted_password | string        | null: false               |
@@ -24,6 +24,7 @@
 
 | Column             | Type          | Option                        |
 | ------------------ | ------------- | ----------------------------- |
+| item_name          | string        | null: false                   |
 | description        | text          | null: false                   |
 | category_id        | integer       | null: false                   |
 | condition_id       | integer       | null: false                   |
@@ -41,14 +42,15 @@
 
 # addressesテーブル
 
-| Column            | Type    | Option      |
-| ----------------- | ------- | ----------- |
-| postal_code       | string  | null: false |
-| sipping_origin_id | integer | null: false |
-| city_town_village | string  | null: false |
-| address           | string  | null: false |
-| building          | string  |             |
-| phone_number      | string  | null: false |
+| Column            | Type    | Option                            |
+| ----------------- | ------- | --------------------------------- |
+| postal_code       | string  | null: false                       |
+| sipping_origin_id | integer | null: false                       |
+| city_town_village | string  | null: false                       |
+| address           | string  | null: false                       |
+| building          | string  |                                   |
+| phone_number      | string  | null: false                       |
+| purchase          | references | null: false, foreign_key :true |
 
 ### Association
 
@@ -65,4 +67,5 @@
 ### Association
 
 - belongs_to :user
-- has_one :item
+- belongs_to :item
+- belongs_to :address
