@@ -24,7 +24,7 @@
 
 | Column             | Type          | Option                        |
 | ------------------ | ------------- | ----------------------------- |
-| item_name          | string        | null: false                   |
+| name               | string        | null: false                   |
 | description        | text          | null: false                   |
 | category_id        | integer       | null: false                   |
 | condition_id       | integer       | null: false                   |
@@ -54,7 +54,7 @@
 
 ### Association
 
-- has_many :purchases
+- belongs_to :purchase
 
 
 # purchasesテーブル
@@ -68,4 +68,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address
