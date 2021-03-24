@@ -4,15 +4,14 @@
 
 | Column             | type          | option
 | ------------------ | ------------- | ----------- |
-| nickname           | string        |             |
+| nickname           | string        | null: false |
 | email              | string        | null: false |
+| encrypted_password | string        | null: false |
 | lastname_kanji     | text          | null: false |
 | firstname_kanji    | string        | null: false |
 | lastname_katakana  | text          | null: false |
 | firstname_katakana | string        | null: false |
-| birth_year         | integer       | null: false |
-| birth_month        | integer       | null: false |
-| birth_day          | integer       | null: false |
+| birthday           | date          | null: false |
 
 
 ### Association
@@ -23,17 +22,16 @@
 
 # itemsテーブル
 
-| Column          | Type          | Option      |
-| --------------- | ------------- | ----------- |
-| image           | ActiveStorage |             |
-| description     | text          | null: false |
-| category        | string        | null: false |
-| condition       | text          | null: false |
-| shipping_cost   | string        | null: false |
-| shipping_origin | string        | null: false |
-| shipping_days   | string        | null: false |
-| price           | integer       | null: false |
-| user_id         | references    |             |
+| Column             | Type          | Option                        |
+| ------------------ | ------------- | ----------------------------- |
+| description        | text          | null: false                   |
+| category           | string        | null: false                   |
+| condition_id       | string        | null: false                   |
+| shipping_cost_id   | string        | null: false                   |
+| shipping_origin_id | string        | null: false                   |
+| shipping_days_id   | string        | null: false                   |
+| price              | integer       | null: false                   |
+| user               | references    | null:false, foreign_key :true |
 
 ### Association
 
@@ -59,10 +57,10 @@
 
 # purchasesテーブル
 
-| Column  | Type       | Option |
-|---------| ---------- |        |
-| user_id | references |        |
-| item_id | references |        |
+| Column  | Type       | Option                        |
+|-------- | ---------- | ----------------------------- |
+| user    | references | null:false, foreign_key :true |
+| item    | references | null:false, foreign_key :true |
 
 ### Association
 
