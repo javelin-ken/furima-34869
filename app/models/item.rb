@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  has_one_attached :image
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   validates :title, :text, presence: true
@@ -19,5 +21,5 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   validates :title, :text, presence: true
   validates :shipping_days_id, numericality: { other_than: 1 }
-  
+
 end
