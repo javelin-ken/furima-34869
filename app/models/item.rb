@@ -11,16 +11,6 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
 
-  with_options numericality: { other_than: 1 } do
-    validates :category_id,
-    validates :condition_id 
-    validates :shipping_cost_id 
-    validates :shipping_origin_id 
-    validates :shipping_days_id
-  end
-
-  
-
   with_options presence: true do
     validates :image
     validates :name
@@ -29,4 +19,13 @@ class Item < ApplicationRecord
     validates :price, numericality: { only_integer: true, message: 'Half-width number' }
   end
   validates :price, numericality: true
+
+  with_options numericality: { other_than: 1, only_integer: true, message: 'Select' } do
+    validates :category_id
+    validates :condition_id
+    validates :shipping_cost_id 
+    validates :shipping_origin_id 
+    validates :shipping_days_id
+  end
+
 end

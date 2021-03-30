@@ -32,31 +32,31 @@ RSpec.describe Item, type: :model do
     it 'categoryのidが1では保存できない' do
       @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category must be other than 1")
+      expect(@item.errors.full_messages).to include("Category Select")
     end
 
     it 'conditionのidが1では保存できない' do
       @item.condition_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Condition must be other than 1")
+      expect(@item.errors.full_messages).to include("Condition Select")
     end
 
     it 'shipping_costのidが1では保存できない' do
       @item.shipping_cost_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping cost must be other than 1")
+      expect(@item.errors.full_messages).to include("Shipping cost Select")
     end
 
     it 'shipping_originのidが1では保存できない' do
       @item.shipping_origin_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping origin must be other than 1")
+      expect(@item.errors.full_messages).to include("Shipping origin Select")
     end
 
     it 'shipping_daysのidが1では保存できない' do
       @item.shipping_days_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping days must be other than 1")
+      expect(@item.errors.full_messages).to include("Shipping days Select")
     end
 
     it 'priceが空では保存できない' do
