@@ -10,6 +10,8 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   has_one_attached :image
   belongs_to :user
+  has_one :purchase
+
 
   with_options presence: true do
     validates :image
