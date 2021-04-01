@@ -57,8 +57,8 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Shipping origin Select")
       end
 
-      it 'shipping_daysのidが1では保存できない' do
-        @item.shipping_days_id = 1
+      it 'shipping_dayのidが1では保存できない' do
+        @item.shipping_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping days Select")
       end
