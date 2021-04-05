@@ -13,6 +13,11 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'postal_code,shipping_origin_id,city_town_village,address,phone_number,tokenがあれば保存できること' do
         expect(@purchase_address).to be_valid
       end
+
+      it 'buildingは空でも保存できること' do
+        @purchase_address.building = ''
+        expect(@purchase_address).to be_valid
+      end
     end
 
     context '内容に問題がある場合' do
@@ -46,11 +51,6 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Address can't be blank")
       end
 
-      it 'buildingは空でも保存できること' do
-        @purchase_address.building = ''
-        expect(@purchase_address).to be_valid
-      end
-
       it 'phone_numberが空では保存できないこと' do
         @purchase_address.phone_number = ''
         @purchase_address.valid?
@@ -79,6 +79,18 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.phone_number = 'aaaaaaaaaaa'
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'user_idが空では保存できないこと' do
+        @purchase_address.user_id = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では保存できないこと' do
+        @purchase_address.item_id = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
       end
 
       it 'tokenが空では保存できないこと' do

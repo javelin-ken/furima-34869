@@ -1,9 +1,10 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: :index 
-  before_action :move_to_index, only: :index
+  before_action :move_to_index, only: [:index, :create]
+  before_action :item_find
+  
   def index
     @purchase_address = PurchaseAddress.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
@@ -19,9 +20,12 @@ class PurchasesController < ApplicationController
 
 
   private
+
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
   
   def purchase_params
-    @item = Item.find(params[:item_id])
     params.require(:purchase_address).permit(:postal_code, :city_town_village, :address, :building, :shipping_origin_id, :phone_number, ).merge(user_id: current_user.id, item_id: @item.id).merge(token: params[:token])
   end
 
@@ -33,7 +37,7 @@ class PurchasesController < ApplicationController
         currency: 'jpy'
       )
   end
-
+  
   def move_to_index
     @item = Item.find(params[:item_id])
     if current_user.id == @item.user_id || @item.purchase.present? 
